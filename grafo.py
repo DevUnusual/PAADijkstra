@@ -22,9 +22,6 @@ class Grafo():
                     self.addNo(key, {no: custo})
                 break
 
-    def vizinhosIn(self, no, vizinhos):
-        pass
-
     def viewGraph(self):
         return self.grafo
 
