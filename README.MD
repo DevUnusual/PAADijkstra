@@ -1,5 +1,3 @@
-Grafo:
-- vai ter dois espaços na estrutura
-- [key, [lista[key, peso]]]
-- ex:['no1' , [no2, 4]] 
-- fazer o grafo com dict permite achar o espaço pela key
+>Grafo Direcionado:
+>> estrutura: dict(key : dict{key, custo}) 
+>>>[x] adicionar nós e os nos atualizar os seus vizinhos
