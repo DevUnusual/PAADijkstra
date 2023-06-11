@@ -10,7 +10,7 @@ class Grafo():
                 if self.grafo[no][k] != c:  # se o custo estiver diferente, atualiza
                     self.grafo[no][k] = c
                     self.grafo[k][no] = c
-            elif ex and k in self.grafo.keys():  # caso o no exista e k nao encontrado
+            elif ex and k in self.grafo.keys():  # caso o no exista e k ja possui alguma conexao
                 self.grafo[no].update({k: c})
                 self.grafo[k].update({no: c})
             elif ex:  # caso o no exista e k nao encontrado
@@ -30,9 +30,21 @@ class Grafo():
             return True
         return False
 
+    def __str__(self):
+        visu = ''
+        caminho = ''
+        for k in self.grafo.keys():
+            visu += f'{k:6}'
+            for key, custo in self.grafo[k].items():
+                caminho += f'--[{custo}]-->{key:->6}'
+            visu += caminho + '\n'
+            caminho = ''
+        return visu
+
 
 gra = Grafo()
 gra.addNo('carlo', {'biel': 2, 'paulo': 5})
 gra.addNo('biel', {'paulo': 3, 'pedro': 6, 'ams': 1})
 
 print(gra.viewGraph())
+print(gra)
