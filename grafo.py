@@ -2,6 +2,17 @@ class Grafo():
     def __init__(self):
         self.grafo = {}
 
+    def __str__(self):
+        visu = ''
+        caminho = ''
+        for k in self.grafo.keys():
+            visu += f'{k:6}'
+            for key, custo in self.grafo[k].items():
+                caminho += f'--[{custo}]-->{key:->6}'
+            visu += caminho + '\n'
+            caminho = ''
+        return visu
+
     def addNo(self, no: str, vizinhos: dict):
         ex = self.exist(no)  # verifica se o no existe
         for k, c in vizinhos.items():  # para toda key custo in vizinhos
@@ -29,17 +40,6 @@ class Grafo():
         if key in self.grafo.keys():
             return True
         return False
-
-    def __str__(self):
-        visu = ''
-        caminho = ''
-        for k in self.grafo.keys():
-            visu += f'{k:6}'
-            for key, custo in self.grafo[k].items():
-                caminho += f'--[{custo}]-->{key:->6}'
-            visu += caminho + '\n'
-            caminho = ''
-        return visu
 
 
 gra = Grafo()
