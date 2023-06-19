@@ -32,6 +32,9 @@ class Grafo():
                 for key, custo in vizinhos.items():
                     self.addNo(key, {no: custo})
                 break
+    
+    def keys(self):
+        return self.grafo.keys()
 
     def viewGraph(self):
         return self.grafo
@@ -41,10 +44,10 @@ class Grafo():
             return True
         return False
 
+if(__name__ == '__main__'):
+    gra = Grafo()
+    gra.addNo('carlo', {'biel': 2, 'paulo': 5})
+    gra.addNo('biel', {'paulo': 3, 'pedro': 6, 'ams': 1})
 
-gra = Grafo()
-gra.addNo('carlo', {'biel': 2, 'paulo': 5})
-gra.addNo('biel', {'paulo': 3, 'pedro': 6, 'ams': 1})
-
-print(gra.viewGraph())
-print(gra)
+    print(gra.viewGraph())
+    print(gra)
