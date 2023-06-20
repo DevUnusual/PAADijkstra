@@ -1,6 +1,7 @@
 class Grafo():
     def __init__(self):
         self.grafo = {}
+        self.inf = set()
 
     def __str__(self):
         visu = ''
@@ -32,7 +33,21 @@ class Grafo():
                 for key, custo in vizinhos.items():
                     self.addNo(key, {no: custo})
                 break
-    
+
+    def normalize(self):
+        keys = set(self.keys())
+        for i in keys:
+            keys_target = keys.difference(set(self.grafo[i].keys()))
+            for k in keys_target:
+                if i == k:
+                    continue
+                self.grafo[i].update({k: -1})
+                self.grafo[k].update({i: -1})
+                self.inf.add((i, k))
+
+    def getValue(self, key1, key2):
+        return self.grafo[key1][key2]
+
     def keys(self):
         return self.grafo.keys()
 
@@ -44,10 +59,11 @@ class Grafo():
             return True
         return False
 
-if(__name__ == '__main__'):
+
+if (__name__ == '__main__'):
     gra = Grafo()
     gra.addNo('carlo', {'biel': 2, 'paulo': 5})
     gra.addNo('biel', {'paulo': 3, 'pedro': 6, 'ams': 1})
-
+    gra.normalize()
     print(gra.viewGraph())
     print(gra)
