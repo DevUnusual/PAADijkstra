@@ -1,9 +1,9 @@
 class Grafo():
     def __init__(self):
-        self.grafo = {}
-        self.inf = set()
+        self.grafo = {} # dicionario de dicionarios CHAVE E VALORES
+        self.inf = set() # conjunto de nos que nao possuem conexao
 
-    def __str__(self):
+    def __str__(self): # metodo para retornar string do grafo
         visu = ''
         caminho = ''
         for k in self.grafo.keys():
@@ -34,7 +34,7 @@ class Grafo():
                     self.addNo(key, {no: custo})
                 break
 
-    def normalize(self):
+    def normalize(self): # passa pelos nos e verifica quem nao ta conectado e atribuir -1 a conexao
         keys = set(self.keys())
         for i in keys:
             keys_target = keys.difference(set(self.grafo[i].keys()))
@@ -43,18 +43,18 @@ class Grafo():
                     continue
                 self.grafo[i].update({k: -1})
                 self.grafo[k].update({i: -1})
-                self.inf.add((i, k))
+                self.inf.add((i, k)) #adicionar no conjunto de nos sem conexao
 
-    def getValue(self, key1, key2):
+    def getValue(self, key1, key2): #devolve o valor da conexao
         return self.grafo[key1][key2]
 
-    def keys(self):
+    def keys(self): #devolve as chaves do grafo
         return self.grafo.keys()
 
-    def viewGraph(self):
+    def viewGraph(self): #devolve o grafo
         return self.grafo
 
-    def exist(self, key):
+    def exist(self, key): #verifica se a chave existe
         if key in self.grafo.keys():
             return True
         return False
@@ -62,8 +62,8 @@ class Grafo():
 
 if (__name__ == '__main__'):
     gra = Grafo()
-    gra.addNo('carlo', {'biel': 2, 'paulo': 5})
-    gra.addNo('biel', {'paulo': 3, 'pedro': 6, 'ams': 1})
+    gra.addNo('carlos', {'gabriel': 2, 'paulo': 5})
+    gra.addNo('gabriel', {'paulo': 3, 'pedro': 6, 'ams': 1})
     gra.normalize()
     print(gra.viewGraph())
     print(gra)
